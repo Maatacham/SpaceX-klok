@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@360&display=swap" rel="stylesheet">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Klok</title>
+        <link rel="stylesheet" type="text/css" href="style.css">
+    </head>
+    <body>
+    <div id="container">
+        <img src="media/logo.png" class="logo"/>
+        <div id="SpaceXKlok" class="klok">
+        <script type="text/javascript">
+            function showTime(){ // functie aanmaken om tijd te weergeven
+                var date = new Date();
+                var h = date.getHours(); // Telt in 0 tot 23 uur
+                var m = date.getMinutes(); // Telt in minuten van 0 tot 59
+                var s = date.getSeconds(); // Telt in seconden van 0 tot 59
+                var session = "AM" // De variable krijgt een string waarde van "AM"
+
+                if (h == 0){ // Wanneer "h" gelijk is aan 0, geef "h" de waarde 12
+                    h = 12;
+                }
+
+                if (h > 12){ // Wanneer "h" groter is dan 12, haal 12 van de waarde af en verander de waarde in session naar "PM" (Voorbeeld: h = 15 - 12 = 03 PM) 
+                    h = h - 12;
+                    session = "PM";
+                }
+
+                if (h < 10){ 
+                    h = "0" + h; // 0 toevoegen voor het getal bij getallen onder de 10, zodat hier twee cijfers staan
+                }
+
+                if (m < 10){ // Wanneer "m" kleiner is dan 10, zet een "0" voor de de waarde van "m"
+                    m = "0" + m;
+                }
+
+                if (s < 10){ // Wanneer "s" kleiner is dan 10, zet een "0" voor de de waarde van "s"
+                    s = "0" + s;
+                }
+
+                var time = h + ":" + m + ":" + s + " " + session; // De uren, minuten en seconden worden in de variabel "time" gezet
+                document.getElementById("SpaceXKlok").innerText = time; // de waarden uit var time worden neergezet in het element met het id "SpaceXKlok"
+                document.getElementById("SpaceXKlok").textContent = time;
+
+                setTimeout(showTime, 1000); // Om de klok te laten lopen, methode vind plaats bij elke 1000 miliseconden
+            }
+
+            showTime(); // functie aanroepen om de tijd te weergeven
+
+            function hover(element) { // Deze functies zorgen ervoor dat de afbeeldingen worden vervangen bij een hover
+            element.setAttribute('src', 'media/sunriseColor.svg');
+            }
+            function unhover(element) {
+            element.setAttribute('src', 'media/sunrise.svg');
+            }
+
+            function hover2(element) {
+            element.setAttribute('src', 'media/afternoonColor.svg');
+            }
+            function unhover2(element) {
+            element.setAttribute('src', 'media/afternoon.svg');
+            }
+
+            function hover3(element) {
+            element.setAttribute('src', 'media/sunsetColor.svg');
+            }
+            function unhover3(element) {
+            element.setAttribute('src', 'media/sunset.svg');
+            }
+            
+
+        </script>
+        </div>
+    </div>
+    <div id="todContainer">
+        <div id="timeOfDay1">
+            <img src="media/sunrise.svg" onmouseover="hover(this);" onmouseout="unhover(this);"/> <!--bij een hover wordt de functie hover aangeroepen-->
+            <h1>Morning</h1>
+        </div>
+        <div id="timeOfDay2">
+            <img src="media/afternoon.svg" onmouseover="hover2(this);" onmouseout="unhover2(this);"/>
+            <h1>Afternoon</h1>
+        </div>
+        <div id="timeOfDay3">
+            <img src="media/sunset.svg"onmouseover="hover3(this);" onmouseout="unhover3(this);"/>
+            <h1>evening</h1>
+        </div>
+    </div>
+        </body>
+</html>
